@@ -30,10 +30,14 @@ class ReturnRecordResource extends JsonResource
             $finderName = $this->user->name;
         }
 
+        // Prefer lost item title, fallback to found item title
+        $itemTitle = $this->lostItem->title ?? $this->foundItem->title ?? null;
+
         return [
             'id' => $this->id,
             'item_owner_name' => $this->lostItem && $this->lostItem->user ? $this->lostItem->user->name : 'Unknown',
             'finder_name' => $finderName,
+            'item_title' => $itemTitle,
             'item_image' => $imageUrl,
             'return_date' => $this->return_date ? $this->return_date->format('Y-m-d') : null,
             'return_time' => $this->created_at->format('H:i:s'),

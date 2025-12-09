@@ -14,12 +14,19 @@ class ReturnRecordResource extends JsonResource
      */
     public function toArray(Request $request): array
     {
-        // Get the image from lost or found item
+        // Get the image from lost or found item - only return if file actually exists
         $imageUrl = null;
         if ($this->lostItem && $this->lostItem->image_path) {
-            $imageUrl = url('storage/' . $this->lostItem->image_path);
+            // Check if file actually exists before returning URL
+            $filePath = storage_path('app/public/' . $this->lostItem->image_path);
+            if (file_exists($filePath)) {
+                $imageUrl = url('storage/' . $this->lostItem->image_path);
+            }
         } elseif ($this->foundItem && $this->foundItem->image_path) {
-            $imageUrl = url('storage/' . $this->foundItem->image_path);
+            $filePath = storage_path('app/public/' . $this->foundItem->image_path);
+            if (file_exists($filePath)) {
+                $imageUrl = url('storage/' . $this->foundItem->image_path);
+            }
         }
 
         // Get finder name (either from found_item user or returned_by user)
@@ -31,7 +38,7 @@ class ReturnRecordResource extends JsonResource
         }
 
         // Prefer lost item title, fallback to found item title
-        $itemTitle = $this->lostItem->title ?? $this->foundItem->title ?? null;
+        $itemTitle = $this->lostItem?->title ?? $this->foundItem?->title ?? 'Item';
 
         return [
             'id' => $this->id,

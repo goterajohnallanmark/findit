@@ -58,7 +58,7 @@ class SuccessStoriesSeeder extends Seeder
                 'location_lost' => 'City Mall parking lot',
                 'lost_date' => now()->subDays(5)->toDateString(),
                 'contact_info' => '+1234567890',
-                'image_path' => 'items/iphone.jpg',
+                'image_path' => null,  // No image path - will return null
             ]
         );
 
@@ -70,7 +70,7 @@ class SuccessStoriesSeeder extends Seeder
                 'location_lost' => 'Restaurant downtown',
                 'lost_date' => now()->subDays(3)->toDateString(),
                 'contact_info' => '+1122334455',
-                'image_path' => 'items/wallet.jpg',
+                'image_path' => null,  // No image path - will return null
             ]
         );
 
@@ -83,7 +83,7 @@ class SuccessStoriesSeeder extends Seeder
                 'location_found' => 'City Mall parking lot',
                 'found_date' => now()->subDays(5)->toDateString(),
                 'contact_info' => '+0987654321',
-                'image_path' => 'items/iphone_found.jpg',
+                'image_path' => null,  // No image path - will return null
             ]
         );
 
@@ -95,7 +95,7 @@ class SuccessStoriesSeeder extends Seeder
                 'location_found' => 'Restaurant downtown',
                 'found_date' => now()->subDays(3)->toDateString(),
                 'contact_info' => '+5544332211',
-                'image_path' => 'items/wallet_found.jpg',
+                'image_path' => null,  // No image path - will return null
             ]
         );
 

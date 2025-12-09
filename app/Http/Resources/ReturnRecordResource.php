@@ -16,9 +16,9 @@ class ReturnRecordResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'item_owner_name' => $this->match->lostItem->user->name,
-            'finder_name' => $this->match->foundItem->user->name,
-            'item_image' => $this->match->lostItem->image_url ? asset('storage/' . $this->match->lostItem->image_url) : null,
+            'item_owner_name' => $this->lostItem?->user?->name ?? 'Unknown',
+            'finder_name' => $this->foundItem?->user?->name ?? 'Unknown',
+            'item_image' => $this->lostItem?->image_path ? asset('storage/' . $this->lostItem->image_path) : ($this->foundItem?->image_path ? asset('storage/' . $this->foundItem->image_path) : null),
             'return_date' => $this->return_date,
             'return_time' => $this->created_at->format('H:i:s'),
             'created_at' => $this->created_at,

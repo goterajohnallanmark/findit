@@ -14,6 +14,14 @@ class ReturnRecordResource extends JsonResource
      */
     public function toArray(Request $request): array
     {
-        return parent::toArray($request);
+        return [
+            'id' => $this->id,
+            'item_owner_name' => $this->match->lostItem->user->name,
+            'finder_name' => $this->match->foundItem->user->name,
+            'item_image' => $this->match->lostItem->image_url ? asset('storage/' . $this->match->lostItem->image_url) : null,
+            'return_date' => $this->return_date,
+            'return_time' => $this->created_at->format('H:i:s'),
+            'created_at' => $this->created_at,
+        ];
     }
 }

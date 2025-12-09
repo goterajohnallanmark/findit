@@ -32,6 +32,9 @@ Route::middleware('force.json')->group(function () {
         ], 405);
     });
     Route::post('/forgot-password', [AuthController::class, 'forgotPassword']);
+    
+    // Public success stories endpoint (no auth required)
+    Route::get('/success-stories', [ReturnController::class, 'getSuccessStories']);
 
 // Protected routes (require authentication)
     Route::middleware(['auth:sanctum'])->name('api.')->group(function () {

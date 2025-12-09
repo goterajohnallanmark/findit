@@ -16,8 +16,7 @@ class ReturnController extends Controller
      */
     public function getSuccessStories()
     {
-        $returns = ReturnRecord::with(['match.lostItem.user', 'match.foundItem.user'])
-            ->where('status', 'completed')
+        $returns = ReturnRecord::with(['lostItem.user', 'foundItem.user'])
             ->latest('return_date')
             ->paginate(20);
 
